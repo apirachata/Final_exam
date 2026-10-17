@@ -20,8 +20,9 @@ def _tokenize(text: str) -> list[str]:
 
     thai_runs = re.findall(r"[\u0e00-\u0e7f]+", text_lower)
     for run in thai_runs:
-        tokens.append(run)
-        if len(run) > 3:
+        if len(run) <= 3:
+            tokens.append(run)
+        else:
             for i in range(len(run) - 1):
                 tokens.append(run[i:i + 2])
             for i in range(len(run) - 2):
